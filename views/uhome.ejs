@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserHome</title>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC' crossorigin='anonymous'>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript">
+        const confirm=(event)=>{
+            if(window.confirm("Confirm to book")==true){
+
+            }else{
+                event.preventDefault()
+                return
+            }
+
+        }
+        const getsp=()=>{
+                let state = document.getElementById("states").value
+                console.log("state is "+state)
+                let user = document.getElementById("name").value
+                window.location.href=`/getspbystate/${state}`
+                
+        }
+          
+        
+        const getspbs=()=>{
+                let service = document.getElementById("service").value
+                console.log("service is "+service)
+                let user = document.getElementById("name").value
+                window.location.href=`/getspbyservice/${service}`
+                
+        }
+       
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#k").hide();
+        });
+        function toggle(){
+            $(document).ready(function(){
+                $("#tg").click(function(){
+                    $("#k").slideToggle();
+                });
+            });
+
+        }
+    </script>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+        }
+        *{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;text-decoration: underline solid white 5px;">
+        Dashboard
+        <button class="btn btn-outline-danger mt-5 me-5 position-absolute top-0 end-0" onclick="window.location.href='/logout'">LogOut</button>
+    </h2>
+    <h1>Welcome, <span id="name"><%=u.name %></span> </h1>
+
+    <div>
+        <label>Search BY state:-</label>
+        <select name="states" id="states" onchange="getsp()">
+            <option value="none">----</option>
+            <option value="all">All</option>
+            <%var place="";%>
+            <% sd.forEach((sp)=>{ %>
+                <%
+                if(place.includes(sp.place)){
+                    return
+                }
+                place=place+sp.place
+                %>
+                <option value=<%=sp.place %> >
+                    <%=sp.place%>
+                    <!-- <%let state = sp.place%> -->
+                </option>
+           
+
+                <% })%>
+            </select>
+    </div>
+    <div>
+        <label>Search BY service:-</label>
+        <select name="service" id="service" onchange="getspbs()">
+            <option value="none">----</option>
+            <option value="all">All</option>
+            <%var service="";%>
+            <% sd.forEach((sp)=>{ %>
+                <%
+                if(service.includes(sp.service)){
+                    return
+                }
+                service=service+sp.service
+                %>
+                <option value=<%=sp.service %> >
+                    <%=sp.service%>
+                    
+                </option>
+           
+
+                <% })%>
+            </select>
+    </div>
+   
+   
+
+    <div>
+        <span style="text-decoration: underline solid white 5px;font-size: 25px;">Services</span><span>:-</span>
+        <div>
+            <table class="table table-hover bg-secondary text-white">
+                <thead>
+                    <tr style="background-color: darkred;">
+                        <th style="text-decoration: underline solid white 3px;">Name</th>
+                        <th style="text-decoration: underline solid white 3px;">Service Area</th>
+                        <th style="text-decoration: underline solid white 3px;">Mobile No.</th>
+                        <th style="text-decoration: underline solid white 3px;">Service</th>
+                        <th style="text-decoration: underline solid white 3px;">Charges</th>
+                        <th style="text-decoration: underline solid white 3px;">Action</th>
+                    </tr>
+                </thead>
+                <% ssd.forEach((sp)=>{ %>
+                <tr>
+                    <td><%=sp.name%></td>
+                    <td><%=sp.place%></td>
+                    <td><%=sp.mobile%></td>
+                    <td><%=sp.service%></td>
+                    <td><%=sp.charges%></td>
+                    <form action="/book/<%=sp.name%>/<%=u.name%>/<%=u.mobile%>/<%=sp.service%>/<%=sp.charges%>">
+                        <td><button class="btn btn-warning" onclick="confirm(event)">Book</button> </td>
+                    </form>
+                </tr>
+                <% })%>
+            </table>
+        </div>
+    </div>
+    <div>
+        <button id="tg" class="btn btn-info dropdown-toggle fa fa-shopping-cart" onclick="toggle()"> Cart</button>
+        <div id="k" class="bg-gradient">
+            <%var i=1;%>
+            <% kart.forEach((k)=>{ %>
+                <h6><%=i%>.- <%=k.service%>  <%=k.spname%> | Charges are <%=k.charges%> | BookTime:- <%=k.time%> | Status:- <%=k.accept%>
+                <%if(k.accept=='Accepted'){ %>
+                    <span>(Arriving in an Hour)</span>
+                <%}%>
+                </h4>
+                
+            <% i++ })%>
+        </div>
+
+    </div>
+    <!-- <div>
+        <button onclick="history.go(-1)">Back</button>
+    </div> -->
+   
+</body>
+</html>
