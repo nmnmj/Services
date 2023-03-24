@@ -1,13 +1,15 @@
 import bookModel from '../models/bookschema.js'
 import providerModel from '../models/providerschema.js'
 import userModel from '../models/userschema.js'
+import bcrypt from 'bcrypt'
 
 class ProviderController{
     static newProvider= async (req, res)=>{
         try {
             const {name, email, mobile, place, service, password, charges}= req.body
+            const hpassword = await bcrypt.hash(password, 10)
             const doc = new providerModel({
-                name, email, mobile, place, service, password, charges
+                name, email, mobile, place, service, password:hpassword, charges
             })
             const r = await doc.save()
             // console.log(r)
@@ -20,9 +22,10 @@ class ProviderController{
     static providerLogin = async (req,res )=>{
         try {
             const {email, password}= req.body
-            const r = await providerModel.findOne({email, password})
+            const r = await providerModel.findOne({email})
+            const mpassword = await bcrypt.compare(password, r.password)
             const kart = await bookModel.find({spname:r.name})
-            if(r!=null){
+            if(mpassword){
                 res.render("sphome.ejs", {r, kart})
             }else{
                 res.send("Wrong login details")

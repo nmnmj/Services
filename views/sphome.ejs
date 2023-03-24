@@ -15,9 +15,14 @@
     </style>
 </head>
 <body>
+     <!-- navbar -->
+     <div>
+        <%-include("./navbar.ejs") %>
+    </div>
     <h1 style="text-align: center;text-decoration: underline solid white 5px;">Service Provider</h1>
     <div>
-        <h2>Welcome, <span><%=r.name%></span></h2>
+        <h2>Welcome, <span><%=r.name%></span> from <%=r.place%> <span class="d-flex justify-content-end">MobileNo.-<%=r.mobile%></span></h2>
+        <h2>Expertise :- <%=r.service %></h2>
     </div>
     <div class="mt-5">
         <h4 class="mb-5" style="text-decoration: underline solid white 5px;">
@@ -35,6 +40,10 @@
     </div>
     <div class="mt-5">
         <button class="btn btn-outline-danger" onclick="window.location.href='/logoutsp'">LogOut</button>
+    </div>
+    <!-- footer -->
+    <div>
+        <%-include("./footer.ejs") %>
     </div>
 </body>
 </html>

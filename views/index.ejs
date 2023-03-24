@@ -15,6 +15,10 @@
     </style>
 </head>
 <body class="text-white">
+    <!-- navbar -->
+    <div>
+        <%-include("./navbar.ejs") %>
+    </div>
     <div style="text-align: center;" class="mt-5">
         <h1 style="text-decoration: underline solid white 5px;">Service Provider</h1>
         <form action="providerlogin" method="post" class="mt-5">
@@ -37,6 +41,10 @@
         <div>
             <a class="nav-link" href="userregister.ejs">User SignUp</a>
         </div>
+    </div>
+    <!-- footer -->
+    <div>
+        <%-include("./footer.ejs") %>
     </div>
 </body>
 </html>

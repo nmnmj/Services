@@ -9,7 +9,7 @@ const PORT = process.env.PORT
 const DATABASE_URL = process.env.DATABASE_URL
 const app = express()
 app.use(cors())
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:false}))       //middleware to parse data as object and req.body can access it. here false tells key's value is string not objects
 app.use(cookieParser())
 
 

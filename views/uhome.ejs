@@ -55,12 +55,14 @@
             background-color: black;
             color: white;
         }
-        *{
-            margin: 10px;
-        }
+       
     </style>
 </head>
 <body>
+     <!-- navbar -->
+     <div>
+        <%-include("./navbar.ejs") %>
+    </div>
     <h2 style="text-align: center;text-decoration: underline solid white 5px;">
         Dashboard
         <button class="btn btn-outline-danger mt-5 me-5 position-absolute top-0 end-0" onclick="window.location.href='/logout'">LogOut</button>
@@ -124,7 +126,7 @@
                         <th style="text-decoration: underline solid white 3px;">Service Area</th>
                         <th style="text-decoration: underline solid white 3px;">Mobile No.</th>
                         <th style="text-decoration: underline solid white 3px;">Service</th>
-                        <th style="text-decoration: underline solid white 3px;">Charges</th>
+                        <th style="text-decoration: underline solid white 3px;">Charges(in Rs.)</th>
                         <th style="text-decoration: underline solid white 3px;">Action</th>
                     </tr>
                 </thead>
@@ -158,9 +160,10 @@
         </div>
 
     </div>
-    <!-- <div>
-        <button onclick="history.go(-1)">Back</button>
-    </div> -->
+    <!-- footer -->
+    <div>
+        <%-include("./footer.ejs") %>
+    </div>
    
 </body>
 </html>

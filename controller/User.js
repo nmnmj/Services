@@ -1,12 +1,16 @@
 import bookModel from "../models/bookschema.js"
 import providerModel from "../models/providerschema.js"
 import userModel from "../models/userschema.js"
+import bcrypt from 'bcrypt'
 
 class UserController{
     static newUser=async (req, res)=>{
         const {name, email, mobile, password}= req.body
+        const hpassword = await bcrypt.hash(password, 10)
         try {
-            const doc = new userModel(req.body)
+            const doc = new userModel({
+                name, email, mobile, password:hpassword
+            })
             const r = await doc.save()
             res.redirect("/")
         } catch (error) {
@@ -17,8 +21,9 @@ class UserController{
     static userLogin = async (req,res )=>{
         try {
             const {email, password}= req.body
-            const u = await userModel.findOne({email, password})
-            if(u!=null){
+            const u = await userModel.findOne({email})
+            const mpassword = await bcrypt.compare(password, u.password)
+            if(mpassword){
                 const sd = await providerModel.find()
                 const ssd= sd
                 await res.cookie("user",u.name)
