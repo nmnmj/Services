@@ -12,25 +12,36 @@
         body{
             background-color: black;
         }
+        .center {
+            position: absolute;
+            top: 60%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+        }
     </style>
 </head>
 <body class="text-white">
     <!-- navbar -->
-    <div>
+    <div class="sticky-top">
         <%-include("./navbar.ejs") %>
     </div>
-    <div style="text-align: center;" class="mt-5">
-        <h1 style="text-decoration: underline solid white 5px;">Service Provider</h1>
-        <form action="providerlogin" method="post" class="mt-5">
-            <input class="" type="email" name="email" id="" placeholder="ServiceProvider email">
-            <input class="" type="password" name="password" id="" placeholder="password">
-            <button  class="btn btn-outline-light" type="submit">Submit</button>
-        </form>
-        <div>
-            <a class="nav-link" href="providerregister.ejs">Service Provider SignUp</a>
-        </div>
+    <div class="d-flex justify-content-center mt-3" style="position: relative;">
+        <img style="opacity: .6;" width="70%" height="300px" src="https://media.istockphoto.com/id/931461588/vector/workers-standing-together.jpg?s=612x612&w=is&k=20&c=o-sVWYF7Nx3og3Z1MF12dqKGPs1_fMhIILreN9ph_WM=" alt="">
+        <div class="center" style="font-size: 80px;color: antiquewhite;">Overview</div>
     </div>
     <hr>
+    <h5 class="mt-3" style="color: rgb(132, 185, 242);">BlueCollar! Your Top Choice For Blue Collar Recruitment Services in India.</h5>
+    <p>
+        India is on a path of rapid growth, where the economic recovery is anticipated to be faster than the previous years. As per major institutions like World Bank, International Monetary Fund (IMF) and RBI, 
+        India is projected to clock double-digit growth in the next few years. 
+        This growth is expected to be led by the manufacturing sector. As a result, core industries and other manufacturing units would expand and increase their manufacturing capacities manifold.
+
+        This will create millions of new jobs in the months and years ahead. The most revered blue collar recruitment agency in India, is ready to handle all your blue collar recruitment needs.
+
+        When you collaborate with with us for your blue collar recruitment drive, you are assured of the best services. We are just not another blue collar recruitment company, it is a partner in your success. 
+        Get in touch with us today!
+    </p>
     <div style="text-align: center;">
         <h1 style="text-decoration: underline solid white 5px;">User</h1>
         <form action="userlogin" method="post" class="mt-5">
@@ -42,6 +53,19 @@
             <a class="nav-link" href="userregister.ejs">User SignUp</a>
         </div>
     </div>
+    <hr>
+    <div style="text-align: center;" class="mt-5">
+        <h1 style="text-decoration: underline solid white 5px;">Service Provider</h1>
+        <form action="providerlogin" method="post" class="mt-5">
+            <input class="" type="email" name="email" id="" placeholder="ServiceProvider email">
+            <input class="" type="password" name="password" id="" placeholder="password">
+            <button  class="btn btn-outline-light" type="submit">Submit</button>
+        </form>
+        <div>
+            <a class="nav-link" href="providerregister.ejs">Service Provider SignUp</a>
+        </div>
+    </div>
+  
     <!-- footer -->
     <div>
         <%-include("./footer.ejs") %>

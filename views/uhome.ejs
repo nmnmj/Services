@@ -121,13 +121,13 @@
         <div>
             <table class="table table-hover bg-secondary text-white">
                 <thead>
-                    <tr style="background-color: darkred;">
-                        <th style="text-decoration: underline solid white 3px;">Name</th>
-                        <th style="text-decoration: underline solid white 3px;">Service Area</th>
-                        <th style="text-decoration: underline solid white 3px;">Mobile No.</th>
-                        <th style="text-decoration: underline solid white 3px;">Service</th>
-                        <th style="text-decoration: underline solid white 3px;">Charges(in Rs.)</th>
-                        <th style="text-decoration: underline solid white 3px;">Action</th>
+                    <tr style="background-color: rgb(19, 0, 139);">
+                        <th>Name</th>
+                        <th>Service Area</th>
+                        <th>Mobile No.</th>
+                        <th>Service</th>
+                        <th>Charges(in Rs.)</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <% ssd.forEach((sp)=>{ %>
@@ -153,6 +153,7 @@
                 <h6><%=i%>.- <%=k.service%>  <%=k.spname%> | Charges are <%=k.charges%> | BookTime:- <%=k.time%> | Status:- <%=k.accept%>
                 <%if(k.accept=='Accepted'){ %>
                     <span>(Arriving in an Hour)</span>
+                    <a href="https://paytm.com/" class="btn btn-info">Pay (Rs. <%=k.charges%>)</a>
                 <%}%>
                 </h4>
                 
